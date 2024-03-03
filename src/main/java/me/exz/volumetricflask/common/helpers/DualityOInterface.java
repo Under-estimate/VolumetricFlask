@@ -28,6 +28,7 @@ import appeng.me.helpers.AENetworkProxy;
 import appeng.util.ConfigManager;
 import appeng.util.InventoryAdaptor;
 import appeng.util.inv.AdaptorItemHandler;
+import me.exz.volumetricflask.Items;
 import me.exz.volumetricflask.common.items.ItemVolumetricFlask;
 import me.exz.volumetricflask.utils.FluidAdaptor;
 import net.minecraft.entity.player.EntityPlayer;
@@ -50,6 +51,7 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.function.Supplier;
 
 import static net.minecraftforge.fluids.capability.CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY;
 
@@ -61,7 +63,10 @@ public class DualityOInterface extends DualityInterface implements IAEFluidInven
     private static final String FILL_MAP_NBT_KEY = "fill_map";
 
     public DualityOInterface(AENetworkProxy networkProxy, IInterfaceHost ih) {
-        super(networkProxy, ih);
+        super(((Supplier<AENetworkProxy>) () -> {
+            networkProxy.setVisualRepresentation(new ItemStack(Items.ITEM_PART_O_INTERFACE));
+            return networkProxy;
+        }).get(), ih);
     }
 
     @SuppressWarnings("unchecked")

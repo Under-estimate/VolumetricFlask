@@ -1,6 +1,9 @@
 package me.exz.volumetricflask;
 
 import appeng.api.AEApi;
+import appeng.api.config.Upgrades;
+import appeng.core.features.BlockDefinition;
+import appeng.core.features.ItemDefinition;
 import me.exz.volumetricflask.common.block.BlockBuffer;
 import me.exz.volumetricflask.common.block.BlockFiller;
 import me.exz.volumetricflask.common.block.BlockOInterface;
@@ -104,5 +107,14 @@ public class Items {
         ModelLoader.setCustomModelResourceLocation(ITEM_BLOCK_FILLER, 0, new ModelResourceLocation(ITEM_BLOCK_FILLER.getRegistryName(), "inventory"));
         ModelLoader.setCustomModelResourceLocation(ITEM_PART_O_INTERFACE, 0, new ModelResourceLocation(ITEM_PART_O_INTERFACE.getRegistryName().toString()));
         AEApi.instance().registries().partModels().registerModels(MODEL_BASE, MODEL_ON, MODEL_OFF, MODEL_HAS_CHANNEL);
+    }
+
+    public static void postInit() {
+        BlockDefinition o_interface = new BlockDefinition("o_interface", BLOCK_O_INTERFACE, ITEM_BLOCK_O_INTERFACE);
+        ItemDefinition part_o_interface = new ItemDefinition("part_o_interface", ITEM_PART_O_INTERFACE);
+        Upgrades.CRAFTING.registerItem(o_interface, 1);
+        Upgrades.CRAFTING.registerItem(part_o_interface, 1);
+        Upgrades.PATTERN_EXPANSION.registerItem(o_interface, 3);
+        Upgrades.PATTERN_EXPANSION.registerItem(part_o_interface, 3);
     }
 }

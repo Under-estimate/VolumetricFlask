@@ -34,7 +34,7 @@ repositories {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2768"
+    version = "1.12.2-14.23.5.2847"
     runDir = "run"
 
     // the mappings can be changed at any time, and must be in the following format.
@@ -69,8 +69,8 @@ dependencies {
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-    compile "appeng:appliedenergistics2:rv6-stable-7"
-
+//    compile "appeng:appliedenergistics2:rv6-stable-7"
+    compile files("libs/appliedenergistics2-rv6-stable-7-extended_life-v0.52.5.jar")
 }
 
 processResources {
